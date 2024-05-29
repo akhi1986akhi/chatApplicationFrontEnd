@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <header>Chat Application Admin</header>
+    <div class="row ">
+        <div class="col-xl-3">
+            <ul class="user-list">
+                <li *ngFor="let item of connectedUsers;" (click)="SelectUser(item)">
+                    <span>
+                        {{item?.username}}
+                    </span>
+                    <br>
+                    <span style="font-size: 0.7rem; color: #808080;">{{item?.email}} | {{item?.contact}}</span>
+
+                </li>
+             
+             
+             
+            </ul>
+        </div>
+        <div class="col-xl-9">
+            <main class="w-50 mx-auto mt-3 mt-3">
+                <div class="name">
+                    <span><i class="fa-solid fa-user"></i></span>
+                    <input type="text" id="name-input" class="name-input" [value]="formData.fullName" >
+                </div>
+        
+                <ul class="message-container" id="message-container">
+                    <li class="message-left">
+                        <p class="message">
+                            Lorem ipsum dolor sit amet.
+                            <span>bluebid 26 July 2025</span>
+                        </p>
+                    </li>
+                    <li class="message-right">
+                        <p class="message">
+                            Lorem ipsum dolor sit amet.
+                            <span>bluebid 26 July 2025</span>
+                        </p>
+                    </li>
+                    <li *ngFor="let item of  this.selectedUser?.messages"  [ngClass]="{ 'message-right': item.isOwnMessage, 'message-left': !item.isOwnMessage }">
+                        <p class="message">
+                            {{item?.message}}
+                            <span>{{item?.name}} | {{item?.dateTime | date:'dd/MM/yyyy hh:mm a'}} </span>
+                        </p>
+                    </li>
+                   
+        
+                    <li class="mesage-feedback" id="mesage-feedback">
+        
+                        <p class="feedback" id="feedback">Killer is typing...</p>
+                    </li>
+        
+                </ul>
+              
+                <form class="message-form" id="message-form">
+                    <input type="text" name="message" id="message-input" class="message-input" [(ngModel)]="formData.message">
+                
+                    <div class="v-divider"></div>
+                    <button class="send-button" (click)="sendMessage()">Send  <span><i class="fa fa-paper-plane"></i></span></button>
+                </form>
+        
+            
+            </main>
+            <h3 class="clients-total" id="clients-total">Total Clients:3</h3>
+        </div>
+    </div>
+    
+</div>
+

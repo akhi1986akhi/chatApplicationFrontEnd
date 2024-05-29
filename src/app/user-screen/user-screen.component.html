@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <header>Chat Application</header>
+    <div class="container mt-5">
+        <div class="chat-container w-50 mx-auto bg-light p-5">
+
+            <div class="chat-user-detail">
+                <div class="chat-header">
+                    <h3>Welcome to Chat Box</h3>
+                </div>
+                <ng-container [ngSwitch]="step">
+
+                    <div class="chat-input" *ngSwitchCase="1">
+                        <div class="row">
+                            <div class="col-xl-12 mb-3">
+                                <label for="" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.fullName">
+                            </div>
+                            <div class="col-xl-12 mb-3">
+                                <label for="" class="form-label">E-mail</label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.email">
+                            </div>
+                            <div class="col-xl-12 mb-3">
+                                <label for="" class="form-label">Contact</label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.contact">
+                            </div>
+                            <div class="col-xl-12">
+                                <button class="btn btn-primary float-end" (click)="joinChat()">Join Chat</button>
+                            </div>
+                        </div>
+                    </div>
+                    <main class=" mx-auto mt-3 mt-3" *ngSwitchCase="2">
+                        <div class="name">
+                            <span><i class="fa-solid fa-user"></i></span>
+                            <input type="text" id="name-input" class="name-input" [value]="formData.fullName" >
+                        </div>
+                
+                        <ul class="message-container" id="message-container">
+                            <li class="message-left">
+                                <p class="message">
+                                    Lorem ipsum dolor sit amet.
+                                    <span>bluebid 26 July 2025</span>
+                                </p>
+                            </li>
+                            <li class="message-right">
+                                <p class="message">
+                                    Lorem ipsum dolor sit amet.
+                                    <span>bluebid 26 July 2025</span>
+                                </p>
+                            </li>
+                            <li *ngFor="let item of selectedUser.messages" [ngClass]="{ 'message-right': item.isOwnMessage, 'message-left': !item.isOwnMessage }">
+                                <p class="message">
+                                    {{item?.message}}
+                                    <span>{{item?.name}} | {{item?.dateTime | date:'dd-MM-yyy hh:mm a'}} </span>
+                                </p>
+                            </li>
+                            <li class="mesage-feedback" id="mesage-feedback">
+                
+                                <p class="feedback" id="feedback">Killer is typing...</p>
+                            </li>
+                
+                        </ul>
+                      
+                        <form class="message-form" id="message-form">
+                            <input type="text" name="message" id="message-input" class="message-input" [(ngModel)]="formData.message">
+                        
+                            <div class="v-divider"></div>
+                            <button class="send-button" (click)="sendMessage()">Send  <span><i class="fa fa-paper-plane"></i></span></button>
+                        </form>
+                
+                    
+                    </main>
+                </ng-container>
+
+            </div>
+        </div>
+    </div>
+</div>
